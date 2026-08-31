@@ -1,0 +1,28 @@
+<div class="flex flex-col h-screen bg-slate-950 text-slate-100 overflow-hidden">
+
+  <!-- Top Header Bar -->
+  <app-header></app-header>
+
+  <!-- Main Content: Gauges on Left + Sidebar on Right -->
+  <div class="flex flex-1 overflow-hidden">
+
+    <!-- Left: Scrollable Gauge Grid (all columns scroll together) -->
+    <main class="flex-1 overflow-y-auto overflow-x-hidden bg-[#060911]">
+      <app-gauge-grid></app-gauge-grid>
+    </main>
+
+    <!-- Right: Controls Sidebar (fixed width) -->
+    <app-right-sidebar
+      class="shrink-0"
+      (openReportModal)="showReportModal = true">
+    </app-right-sidebar>
+
+  </div>
+
+  <!-- PDF Report Modal -->
+  <app-report-pdf
+    [isOpen]="showReportModal"
+    (close)="showReportModal = false">
+  </app-report-pdf>
+
+</div>
