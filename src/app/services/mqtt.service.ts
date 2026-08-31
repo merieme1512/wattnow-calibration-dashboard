@@ -76,7 +76,8 @@ export class MqttService {
     const url = `${protocol}://${host}:${port}${path}`;
 
     try {
-      const connectFn = (mqtt as any).connect || (mqtt as any).default?.connect;
+      const mqttObj: any = mqtt;
+      const connectFn = mqttObj.connect || mqttObj.default?.connect || mqttObj.default;
       this.client = connectFn(url, {
         clientId,
         username,
